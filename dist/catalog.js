@@ -135,7 +135,7 @@ export function setupCatalog(root) {
  function render(nextLang){
   lang=nextLang;
   const n={de:1,en:2,ar:3}[lang], t=ui[lang], row=rows[active];
-  root.innerHTML='<h2>'+t[0]+'</h2><p>'+t[5]+'</p><div class="catalog-grid">'+groups.map(([from,to],group)=>'<section><h3>'+t[group+1]+'</h3>'+rows.slice(from,to).map((r,i)=>'<button data-symbol="'+(from+i)+'" aria-pressed="'+(from+i===active)+'"><bdi>'+r[0]+'</bdi> '+r[n]+'</button>').join("")+'</section>').join("")+'</div><article class="catalog-detail" aria-live="polite"><h3><bdi>'+row[0]+'</bdi> '+row[n]+'</h3><p>'+row[n+3]+'</p>'+renderCatalogExample(active,row[0],lang)+(active===9?'<a href="./#assembly">'+t[6]+'</a>':'')+'</article><a href="https://www.iso.org/standard/66777.html">ISO 1101</a> · <a href="https://www.iso.org/standard/65559.html">ISO 5458</a>';
+  root.innerHTML='<h2>'+t[0]+'</h2><p>'+t[5]+'</p><div class="catalog-grid">'+groups.map(([from,to],group)=>'<section><h3>'+t[group+1]+'</h3>'+rows.slice(from,to).map((r,i)=>'<button data-symbol="'+(from+i)+'" aria-pressed="'+(from+i===active)+'"><bdi>'+r[0]+'</bdi> '+r[n]+'</button>').join("")+'</section>').join("")+'</div><article class="catalog-detail" aria-live="polite"><h3><bdi>'+row[0]+'</bdi> '+row[n]+'</h3><p>'+row[n+3]+'</p>'+renderCatalogExample(active,row[0],lang)+(active===9?'<a href="./index.html#assembly">'+t[6]+'</a>':'')+'</article><a href="https://www.iso.org/standard/66777.html">ISO 1101</a> · <a href="https://www.iso.org/standard/65559.html">ISO 5458</a>';
  }
  root.addEventListener("click",event=>{
   const button=event.target.closest("[data-symbol]");
