@@ -1,3 +1,4 @@
+import {applyChrome} from "./site.js";
 import {setupCourse} from "./course.js";
 import {setupCatalog} from "./catalog.js";
 const labels={de:["Zur Startseite","Grundkurs","Toleranzübersicht","Sprache"],en:["Home","Basic course","Tolerance guide","Language"],ar:["الصفحة الرئيسية","الدورة الأساسية","دليل التفاوتات","اللغة"]};
@@ -11,7 +12,7 @@ function show(){
  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
  select.value=lang;
  document.querySelector("#languageLabel").textContent=labels[lang][3];
- document.querySelectorAll(".page-links a").forEach((a,i)=>{a.textContent=labels[lang][i];});
+ applyChrome(lang);
  render(lang);
 }
 select.addEventListener("change",()=>{lang=select.value;try{localStorage.setItem("edl-gps-lang",lang);}catch{}show();});
