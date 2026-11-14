@@ -1,3 +1,4 @@
+import {applyChrome} from "./site.js";
 import { frameGuide } from "./frame-guide.js";
 import { drawDatums, drawingLegend } from "./drawing-light.js";
 import {examples} from "./data.js";
@@ -6,9 +7,9 @@ import {setupLab} from "./lab.js";
 import {setupAssembly} from "./assembly.js";
 
 const strings = {
- de: ["Form- und Lagetoleranzen","Wähle ein Bauteil und einen Toleranzrahmen. Die Zeichnung markiert das tolerierte Element, die Skizze zeigt die Toleranzzone.","Sprache","Bauteilauswahl","Form","Richtung","Ort","Lauf","Toleranzzone (überhöht)","Lehrzeichnung · Maße in mm"],
- en: ["Geometric tolerances","Choose a part and a tolerance frame. The drawing highlights the controlled feature and the sketch shows the tolerance zone.","Language","Choose a part","Form","Orientation","Location","Runout","Tolerance zone (exaggerated)","Teaching drawing · Dimensions in mm"],
- ar: ["تفاوتات الشكل والموقع","اختر قطعة وإطار تفاوت. يضيء الرسم العنصر الخاضع للتفاوت ويوضح المخطط منطقة التفاوت.","اللغة","اختيار القطعة","الشكل","الاتجاه","الموقع","الخفقان","منطقة التفاوت (مكبّرة)","رسم تعليمي · الأبعاد بالملليمتر"],
+ de: ["Form- und Lagetoleranzen","Wähle ein Bauteil und einen Toleranzrahmen. Die Zeichnung markiert das tolerierte Element, die Skizze zeigt die Toleranzzone.","Sprache","Bauteilauswahl","Form","Richtung","Ort","Lauf","Toleranzzone (überhöht)","Lehrzeichnung, Maße in mm"],
+ en: ["Geometric tolerances","Choose a part and a tolerance frame. The drawing highlights the controlled feature and the sketch shows the tolerance zone.","Language","Choose a part","Form","Orientation","Location","Runout","Tolerance zone (exaggerated)","Teaching drawing, Dimensions in mm"],
+ ar: ["تفاوتات الشكل والموقع","اختر قطعة وإطار تفاوت. يضيء الرسم العنصر الخاضع للتفاوت ويوضح المخطط منطقة التفاوت.","اللغة","اختيار القطعة","الشكل","الاتجاه","الموقع","الخفقان","منطقة التفاوت (مكبّرة)","رسم تعليمي, الأبعاد بالملليمتر"],
 };
 
 const geometries = [
@@ -58,6 +59,7 @@ function render() {
  document.documentElement.lang = lang;
  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
  const t = strings[lang];
+ applyChrome(lang);
  const example = examples[part];
  const [kind, , value, datum, title, explanation] = example.items[feature];
  const geometry = geometries[part];
@@ -89,7 +91,7 @@ function render() {
    return '<path d="M'+(x+12)+' '+(y+12)+'L'+ax+' '+ay+'" class="'+(i===feature?'laser-leader':'context-leader')+'" stroke="#758e9a"/><circle cx="'+ax+'" cy="'+ay+'" r="2" stroke="none" fill="'+(i===feature?'#c04a00':'#758e9a')+'"/><g transform="translate('+x+' '+y+')" data-feature="'+i+'" role="button" tabindex="0" aria-pressed="'+(i===feature)+'" aria-label="'+item[4][lang]+'" fill="'+(i===feature?'#fff2e8':'white')+'">'+box+'</g>';
  }).join("");
  get("drawing").innerHTML = '<svg viewBox="0 0 480 315" role="group" aria-label="'+example.part[lang]+'"><defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v8" stroke="#76929d"/></pattern></defs><style>.axis{stroke:#667f8d;stroke-dasharray:9 4 2 4}</style><g fill="none" stroke="#183649" stroke-width="1.5">'+'<g class="drawing-context">'+geometry.body+'<g stroke="#657d8a" font-size="12">'+geometry.dims+'</g></g>'+drawDatums(part,datum)+'<g class="selected">'+geometry.marks[feature]+'</g>'+frames+'</g><text x="238" y="302" text-anchor="middle" font-size="10" direction="'+document.documentElement.dir+'">'+t[9]+'</text></svg>'+drawingLegend(lang,datum);
- get("zone").innerHTML = '<svg viewBox="0 0 290 153" role="img" aria-label="'+t[8]+'"><style>.actual{stroke:#007f86;stroke-width:3}</style><g fill="none" stroke="#506f80" stroke-width="1.5">'+zoneShapes[part][feature]+'</g><text x="145" y="133" text-anchor="middle" font-size="12">'+value+' mm'+(datum?' · '+datum:'')+'</text><text x="145" y="148" text-anchor="middle" font-size="9" direction="'+document.documentElement.dir+'">'+t[8]+'</text></svg>';
+ get("zone").innerHTML = '<svg viewBox="0 0 290 153" role="img" aria-label="'+t[8]+'"><style>.actual{stroke:#007f86;stroke-width:3}</style><g fill="none" stroke="#506f80" stroke-width="1.5">'+zoneShapes[part][feature]+'</g><text x="145" y="133" text-anchor="middle" font-size="12">'+value+' mm'+(datum?', '+datum:'')+'</text><text x="145" y="148" text-anchor="middle" font-size="9" direction="'+document.documentElement.dir+'">'+t[8]+'</text></svg>';
 }
 document.addEventListener("click",(event)=>{
  activeCell = event.target.dataset.cell === undefined ? null : Number(event.target.dataset.cell);
@@ -120,7 +122,7 @@ lab.id = "lab";
 const labStyle = document.createElement("link");
 labStyle.rel = "stylesheet";
 labStyle.href = "./lab.css";
-document.head.append(labStyle);
+document.getElementById("mizan").before(labStyle);
 document.querySelector("footer").before(lab);
 const renderLab = setupLab(lab);
 const assembly = document.createElement("section");
@@ -128,22 +130,22 @@ assembly.id = "assembly";
 const assemblyStyle = document.createElement("link");
 assemblyStyle.rel = "stylesheet";
 assemblyStyle.href = "./assembly.css";
-document.head.append(assemblyStyle);
+document.getElementById("mizan").before(assemblyStyle);
 document.querySelector(".layout").after(assembly);
 const renderAssembly = setupAssembly(assembly);
 const studyLinks = document.createElement("nav");
-studyLinks.id = "course";
-studyLinks.className = "page-links";
+studyLinks.id = "sections";
+studyLinks.className = "section-links";
 studyLinks.style.marginBlock = "1rem";
 get("parts").before(studyLinks);
 const studyStyle = document.createElement("link");
 studyStyle.rel = "stylesheet";
 studyStyle.href = "./study.css";
-document.head.append(studyStyle);
+document.getElementById("mizan").before(studyStyle);
 function renderStudyLinks(){
- const [course, catalog, drawings, simulation, lab] = {de:["Grundkurs öffnen","Toleranzübersicht","Zeichnungen","Montage-Simulation","Prüflabor"],en:["Open basic course","Tolerance guide","Drawings","Assembly simulation","Inspection lab"],ar:["افتح الدورة الأساسية","دليل التفاوتات","الرسومات","محاكاة التركيب","مختبر القياس"]}[lang];
- studyLinks.setAttribute("aria-label", {de:"Lernbereiche",en:"Learning sections",ar:"أقسام التعلّم"}[lang]);
- studyLinks.innerHTML='<a href="./course.html">'+course+'</a><a href="./tolerances.html">'+catalog+'</a><a href="#parts">'+drawings+'</a><a href="#assembly">'+simulation+'</a><a href="#lab">'+lab+'</a>';
+ const names = {de:["Zeichnungen","Montage-Simulation","Prüflabor"],en:["Drawings","Assembly simulation","Inspection lab"],ar:["الرسومات","محاكاة التركيب","مختبر القياس"]}[lang];
+ studyLinks.setAttribute("aria-label", {de:"Auf dieser Seite",en:"On this page",ar:"في هذه الصفحة"}[lang]);
+ studyLinks.innerHTML = ["#parts","#assembly","#lab"].map((h,i)=>'<a href="'+h+'">'+names[i]+'</a>').join("");
 }
 render();
 renderLab(lang);
