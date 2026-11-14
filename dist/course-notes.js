@@ -4,7 +4,7 @@ en:["Compare the shaft callout ⌀30 g6 with the assembly fit H7/g6 in the simul
 ar:["قارن ترميز العمود ⌀30 g6 بترميز التجميع H7/g6 في المحاكاة.","تتبّع المحور المشترك بين المسقطين. تظهر الدائرة في المسقط الجانبي على شكل حدين.","بدّل بين المسقط والمقطع وقارن حواف الثقب المتقطعة بالفراغ المرئي.","اقرأ رقم البعد أولاً ثم المقياس. الطول 64 مستقل عن حجم العرض على الشاشة.","قبل التصنيع طابق رقم القطعة والمراجعة وحالة الاعتماد مع الطلب. الجلبة مثال تعليمي.","قارن زوجين من المقاسات الفعلية للتوافق H7/k6. يمكن أن ينتج خلوص أو تداخل."]
 };
 export const sheetLegend={
-de:["EDL-024 · Zeichnungsnummer","REV B · Änderungsstand B","1:1 · Maßstab der Zeichnung"],
-en:["EDL-024 · drawing number","REV B · revision B","1:1 · drawing scale"],
-ar:["EDL-024 · رقم الرسم","REV B · المراجعة B","1:1 · مقياس الرسم"]
+de:["EDL-024: Zeichnungsnummer","REV B: Änderungsstand B","1:1: Maßstab der Zeichnung"],
+en:["EDL-024: drawing number","REV B: revision B","1:1: drawing scale"],
+ar:["EDL-024: رقم الرسم","REV B: المراجعة B","1:1: مقياس الرسم"]
 };
