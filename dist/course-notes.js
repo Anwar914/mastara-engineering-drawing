@@ -1,0 +1,10 @@
+export const lessonsExtra = {
+de:["Vergleiche in der Montage-Simulation die Einzelteilangabe ⌀30 g6 mit der gemeinsamen Angabe H7/g6.","Verfolge die Mittelachse zwischen beiden Ansichten. Eine Kreisform in der Stirnansicht wird in der Seitenansicht durch zwei Begrenzungen sichtbar.","Schalte zwischen Ansicht und Schnitt um und vergleiche die gestrichelten Bohrungskanten mit dem sichtbaren Hohlraum.","Lies erst die Maßzahl und dann den Maßstab. Das Längenmaß 64 ist unabhängig von der Größe am Bildschirm.","Vor der Fertigung: Teilekennung, Revision und Freigabe mit dem Auftrag abgleichen. Die Buchse im Blatt ist ein Lehrbeispiel.","Prüfe anschließend bei H7/k6 zwei verschiedene Istmaßpaare. Dasselbe Toleranzpaar kann Spiel oder Übermaß ergeben."],
+en:["Compare the shaft callout ⌀30 g6 with the assembly fit H7/g6 in the simulation.","Follow the common axis across the views. A circle in the end view appears as two limits in the side view.","Toggle the section and compare dashed bore edges with the visible void.","Read the dimension before the scale. The stated length 64 is independent of screen size.","Before production, check the part ID, revision and release against the order. The bushing shown is a teaching example.","Compare two actual size pairs for H7/k6. The same fit class can yield either clearance or interference."],
+ar:["قارن ترميز العمود ⌀30 g6 بترميز التجميع H7/g6 في المحاكاة.","تتبّع المحور المشترك بين المسقطين. تظهر الدائرة في المسقط الجانبي على شكل حدين.","بدّل بين المسقط والمقطع وقارن حواف الثقب المتقطعة بالفراغ المرئي.","اقرأ رقم البعد أولاً ثم المقياس. الطول 64 مستقل عن حجم العرض على الشاشة.","قبل التصنيع طابق رقم القطعة والمراجعة وحالة الاعتماد مع الطلب. الجلبة مثال تعليمي.","قارن زوجين من المقاسات الفعلية للتوافق H7/k6. يمكن أن ينتج خلوص أو تداخل."]
+};
+export const sheetLegend={
+de:["EDL-024 · Zeichnungsnummer","REV B · Änderungsstand B","1:1 · Maßstab der Zeichnung"],
+en:["EDL-024 · drawing number","REV B · revision B","1:1 · drawing scale"],
+ar:["EDL-024 · رقم الرسم","REV B · المراجعة B","1:1 · مقياس الرسم"]
+};
