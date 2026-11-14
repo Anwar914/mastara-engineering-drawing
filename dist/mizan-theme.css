@@ -1,0 +1,29 @@
+/* Shared interface palette from Mizan's learning workspace. */
+:root {
+  --ink: #27263f;
+  --green: #6451ce;
+  --paper: #f7f7fc;
+  --line: #e2e2ef;
+  --muted: #747589;
+  --lime: #dceab9;
+  --action: #6552df;
+  --soft: #efedf9;
+  --surface: #fff;
+  --control-line: #9c92bf;
+  --text-secondary: #56566c;
+}
+body { background: var(--paper); color: var(--ink); }
+header { background: var(--surface); color: var(--ink); border-bottom: 1px solid var(--line); }
+button, select, .page-links a { border-color: var(--control-line); }
+select, .sim-controls select, .lab-grid input, .lab-grid select { background: var(--surface); color: var(--ink); border-color: var(--control-line); }
+button[aria-pressed=true], .sim-actions [data-try] { background: var(--action); border-color: var(--action); color: white; }
+:focus-visible { outline-color: var(--green); }
+a { color: #4935a4; }
+#intro, #assembly > p, .sim-layout p, .lab-hint, .worked-example figcaption { color: var(--text-secondary); }
+#category { color: #4935a4; }
+#sheet, aside, #course, #catalog, #assembly, #lab, .worked-example figure, .frame-guide details { border-color: var(--line); }
+#drawing, #zone, .course-layout figure, .catalog-grid section, .catalog-detail, .sim-controls, .sim-views figure, .sim-results { background: var(--soft); border-color: var(--line); }
+.catalog-detail, .course-notes { border-inline-start-color: var(--action); }
+.sim-holes td, .sim-holes th, .sim-note { border-color: var(--line); }
+.course-progress progress, #course progress, .sim-controls input { accent-color: var(--action); }
+svg text { fill: var(--ink); }
