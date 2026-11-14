@@ -27,3 +27,29 @@ a { color: #4935a4; }
 .sim-holes td, .sim-holes th, .sim-note { border-color: var(--line); }
 .course-progress progress, #course progress, .sim-controls input { accent-color: var(--action); }
 svg text { fill: var(--ink); }
+
+/* Shared navigation and touch layout across learning sections. */
+header { padding-inline: max(1rem, calc((100vw - 1160px) / 2)); }
+h1, h2, h3 { overflow-wrap: anywhere; text-wrap: balance; }
+.page-links { gap: .5rem; }
+.page-links a, #parts button, #features button, .course-nav button, .course-options button,
+.catalog-grid button, .sim-actions button, .lab-presets button, header select, .frame-guide summary {
+  min-block-size: 44px;
+}
+.page-links a { display: inline-flex; align-items: center; text-decoration: none; }
+.page-links a:hover { background: var(--soft); text-decoration: underline; }
+.page-links a[aria-current="page"] { background: var(--soft); font-weight: 700; }
+#parts, #features, .course-nav, .course-options, .sim-actions, .lab-presets { gap: .5rem; }
+.sim-layout > div, .lab-grid > div, .course-layout > * { min-inline-size: 0; }
+.sim-controls label > span { display: flex; justify-content: space-between; gap: .5rem; align-items: baseline; }
+.sim-controls output { flex: none; font-variant-numeric: tabular-nums; }
+:lang(ar) body { font-family: Tahoma, Arial, sans-serif; line-height: 1.75; }
+:lang(ar) svg text { font-family: Tahoma, Arial, sans-serif; }
+@media (max-width: 480px) {
+  main { padding-inline: .8rem; }
+  .page-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-links a { overflow-wrap: anywhere; }
+  .sim-results dl { grid-template-columns: minmax(0,1fr); }
+  .sim-results dd { margin-block-end: .3rem; }
+  #assembly, #lab, #course, #catalog { padding: .85rem; }
+}
