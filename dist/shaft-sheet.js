@@ -1,7 +1,7 @@
 const labels={
- ar:["رسم عمود مدرّج بمجرى حلقة تثبيت","المصدر: رسم هندسي تعليمي أصلي من إعداد مسطرة. ترميز التفاوتات وفق","المسقط الجانبي","A–A","الأبعاد بالملليمتر · غير مقياسي"],
- de:["Stufenwelle mit Sicherungsringnut","Quelle: eigenständig erstellte Lehrzeichnung von Masṭara. Toleranznotation nach","Seitenansicht","A–A","Maße in mm · schematisch"],
- en:["Stepped shaft with retaining-ring groove","Source: original teaching drawing by Masṭara. Tolerance notation follows","Side view","A–A","Dimensions in mm · schematic"],
+ ar:["رسم عمود مدرّج بمجرى حلقة تثبيت","المصدر: رسم هندسي تعليمي أصلي من إعداد مسطرة. ترميز التفاوتات وفق","المسقط الجانبي","A–A","الأبعاد بالملليمتر, غير مقياسي"],
+ de:["Stufenwelle mit Sicherungsringnut","Quelle: eigenständig erstellte Lehrzeichnung von Masṭara. Toleranznotation nach","Seitenansicht","A–A","Maße in mm, schematisch"],
+ en:["Stepped shaft with retaining-ring groove","Source: original teaching drawing by Masṭara. Tolerance notation follows","Side view","A–A","Dimensions in mm, schematic"],
 };
 export function shaftSheet(lang,mode){
  const t=labels[lang];
@@ -15,5 +15,5 @@ export function shaftSheet(lang,mode){
  <path d="M291 90v74" stroke="#526979" stroke-dasharray="5 3"/><path d="M20 227H478"/></g>
  <path d="${["M111 77H214","M274 98H330","M37 98H105M37 156H105"][mode]}" stroke="#bf4600" stroke-width="3.5"/>
  ${mode===1?'<path d="M38 98H105M38 156H105" stroke="#155ba0" stroke-width="3"/>':""}
- <g font-size="11"><text x="179" y="43">100</text><text x="156" y="59">36</text><text x="15" y="136" transform="rotate(-90 15 136)">⌀28</text><text x="278" y="213">1.6</text><text x="99" y="193">A</text><text x="296" y="91">A</text><text x="296" y="171">A</text><text x="399" y="188">${t[3]}</text><text x="160" y="193" text-anchor="middle">${t[2]}</text><text x="30" y="242">MST-001</text><text x="470" y="242" text-anchor="end">${t[4]}</text></g></svg><figcaption>${t[1]} <a href="https://www.iso.org/standard/66777.html">ISO 1101</a>.</figcaption></figure>`;
+ <g font-size="11"><text x="179" y="43">100</text><text x="156" y="59">36</text><text x="15" y="136" transform="rotate(-90 15 136)">⌀28</text><text x="278" y="213">1.6</text><text x="99" y="193">A</text><text x="296" y="91">A</text><text x="296" y="171">A</text><text x="399" y="188">${t[3]}</text><text x="160" y="193" text-anchor="middle">${t[2]}</text><text x="30" y="242">MST-001</text><text x="470" y="242" text-anchor="end">${t[4]}</text></g></svg><figcaption>${t[1]} <a target="_blank" rel="noopener" href="https://www.iso.org/standard/66777.html">ISO 1101</a>.</figcaption></figure>`;
 }
