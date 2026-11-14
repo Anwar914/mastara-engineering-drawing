@@ -24,10 +24,21 @@ export function applyChrome(lang) {
   const nav = document.querySelector(".site-nav");
   if (nav) {
     nav.setAttribute("aria-label", NAV_LABEL[lang]);
-    nav.querySelectorAll("a").forEach((a, i) => {
+    nav.querySelectorAll("a:not([data-workshop])").forEach((a, i) => {
       a.textContent = NAV[lang][i];
       if (i === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
+  }
+  if (nav) {
+    let workshop = nav.querySelector('[data-workshop]');
+    if (!workshop) {
+      workshop = document.createElement("a");
+      workshop.href = "./workshop-ar.html";
+      workshop.dataset.workshop = "";
+      workshop.hreflang = "ar";
+      nav.append(workshop);
+    }
+    workshop.textContent = {de:"Werkstatt-Lektionen (AR)",en:"Workshop lessons (AR)",ar:"دروس الورشة"}[lang];
   }
   const label = document.getElementById("languageLabel");
   if (label) label.textContent = LANG_LABEL[lang];
