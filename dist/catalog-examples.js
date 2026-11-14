@@ -154,9 +154,35 @@ function zone(index,caption){
  }
  return '<svg viewBox="0 0 210 92" role="img" aria-label="'+caption+'"><g fill="none" stroke="#155ba0" stroke-width="2.4">'+shape+'</g></svg>';
 }
+
+// Teaching sketches: orange identifies the controlled feature, blue the datum feature.
+const partViews = [["M35 110h34V91h115v19h36v42h-36v19H69v-19H35Z","M84 91h84",126,91],["M38 106l47-27h137l-45 27zm0 0v31h139l45-27V79m-45 27v31","M38 106l47-27h137l-45 27Z",136,92],["M151 130m-41 0a41 41 0 1 0 82 0 41 41 0 1 0-82 0Z","M151 89a41 41 0 0 1 41 41",177,98],["M76 105h108a17 27 0 0 1 0 54H76m0-54a17 27 0 1 0 0 54 17 27 0 1 0 0-54","M84 105h100m-100 54h100",150,105],["M41 149h61q23 0 23-23V87h85v77H41Z","M102 149q23 0 23-23",121,141],["M42 152Q126 54 209 152l-23 15H64Z M64 167Q126 90 186 167","M42 152Q126 54 209 152",126,103],["M42 98h168v57H42Z","M42 98h168",126,98,"M42 155h168"],["M43 83h167v83H43Z M110 83v83m30-83v83","M110 83h30",126,83,"M43 166h167"],["M44 160v-26l95-55h70v81Z","M44 134l95-55",111,95,"M44 160h165"],["M28 81h218v94H28Z M86 124m-14 0a14 14 0 1 0 28 0 14 14 0 1 0-28 0 M189 124m-14 0a14 14 0 1 0 28 0 14 14 0 1 0-28 0","M189 110a14 14 0 1 1 0 28 14 14 0 1 1 0-28Z",183,111,"M28 175h218M28 81v94M246 81v94"],["M34 106h75V91h102v72H109v-15H34Z","M111 91h99m-99 72h99",152,91,"M34 106h75m-75 42h75"],["M39 94h58v36h44V94h58v70H39Z","M97 94v36h44V94",140,112,"M39 164h160"],["M35 106h73V90h101v74H108v-16H35Z","M157 90h15",165,90,"M35 106h73m-73 42h73"],["M35 106h73V90h101v74H108v-16H35Z","M109 90h100m-100 74h100",165,90,"M35 106h73m-73 42h73"]];
+const viewLabels = {
+ de: ["Bauteilzeichnung", "Toleriertes Element", "Bezugselement"],
+ en: ["Part drawing", "Controlled feature", "Datum feature"],
+ ar: ["رسم القطعة", "العنصر الخاضع للتفاوت", "عنصر إسناد المرجع"],
+};
+function partDrawing(index, symbol, value, datums, lang) {
+ const [body, feature, x, y, reference] = partViews[index];
+ const [caption, featureLabel, datumLabel] = viewLabels[lang];
+ const letters = datums.split("|").filter(Boolean);
+ const cells = [symbol, value, ...letters];
+ const widths = [32, 60, 23, 23, 23];
+ let cursor = 24;
+ const frame = cells.map((cell, i) => {
+  const width = widths[i];
+  const drawing = '<rect x="'+cursor+'" y="14" width="'+width+'" height="25" fill="white" stroke="#27263f"/><text x="'+(cursor+width/2)+'" y="32" text-anchor="middle">'+cell+'</text>';
+  cursor += width;
+  return drawing;
+ }).join("");
+ return '<figure class="part-example"><svg viewBox="0 0 275 190" role="img" aria-label="'+caption+'" direction="ltr"><g fill="none" stroke-linejoin="round"><path d="'+body+'" stroke="#27263f" stroke-width="2"/>'+
+ (reference?'<path d="'+reference+'" stroke="#155ba0" stroke-width="3" stroke-dasharray="7 3"/>':'')+
+ '<path d="'+feature+'" stroke="#b84200" stroke-width="4"/><path d="M59 39V53H'+x+'L'+x+' '+y+'" stroke="#b84200"/><circle cx="'+x+'" cy="'+y+'" r="3" fill="#b84200"/></g>'+frame+'</svg><figcaption>'+caption+' · <span style="color:#903700">'+featureLabel+'</span>'+(reference?' · <span style="color:#064f98">'+datumLabel+'</span>':'')+'</figcaption></figure>';
+}
+
 export function renderCatalogExample(index,symbol,lang){
  const [value,datums,pass,fail,...contexts]=examples[index],t=labels[lang];
  const number=new Intl.NumberFormat(lang,{minimumFractionDigits:3,maximumFractionDigits:3});
  const cell=(text)=>'<span>'+text+'</span>';
- return '<div class="worked-example"><div><h4>'+t[0]+'</h4><p>'+contexts[{de:0,en:1,ar:2}[lang]]+'</p><div class="sample-frame" dir="ltr" aria-label="'+t[1]+'">'+[symbol,value,...datums.split("|").filter(Boolean)].map(cell).join("")+'</div><div class="example-values"><span class="example-pass">'+t[2]+' <bdi>'+number.format(Number(pass))+' mm</bdi></span><span class="example-fail">'+t[3]+' <bdi>'+number.format(Number(fail))+' mm</bdi></span></div></div><figure>'+zone(index,t[4])+'<figcaption>'+t[4]+zoneLegend(lang)+'</figcaption></figure></div>';
+ return '<div class="worked-example"><div><h4>'+t[0]+'</h4><p>'+contexts[{de:0,en:1,ar:2}[lang]]+'</p><div class="sample-frame" dir="ltr" aria-label="'+t[1]+'">'+[symbol,value,...datums.split("|").filter(Boolean)].map(cell).join("")+'</div><div class="example-values"><span class="example-pass">'+t[2]+' <bdi>'+number.format(Number(pass))+' mm</bdi></span><span class="example-fail">'+t[3]+' <bdi>'+number.format(Number(fail))+' mm</bdi></span></div></div><figure>'+zone(index,t[4])+'<figcaption>'+t[4]+zoneLegend(lang)+'</figcaption></figure></div>'+partDrawing(index,symbol,value,datums,lang);
 }
