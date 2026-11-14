@@ -1,1 +1,30 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Toleranzübersicht · مسطرة</title><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./course.css"><link rel="stylesheet" href="./study.css"><link rel="stylesheet" href="./mizan-theme.css"></head><body><header><div>مسطرة</div><label><span id="languageLabel">Sprache</span> <select id="language"><option value="de">Deutsch</option><option value="en">English</option><option value="ar">العربية</option></select></label></header><main><nav class="page-links"><a href="./index.html">Startseite</a><a href="./course.html">Grundkurs</a><a href="./tolerances.html">Toleranzübersicht</a></nav><section id="catalog"></section></main><script type="module" src="./study.js"></script></body><script type="module" src="./streamlit-frame.js"></script></html>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mastara</title>
+<meta name="description" content="Interaktive Zeichnungen zu Form- und Lagetoleranzen">
+<script>try{var l=localStorage.getItem("edl-gps-lang");if(l==="de"||l==="en"||l==="ar"){var r=document.documentElement;r.lang=l;r.dir=l==="ar"?"rtl":"ltr"}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./course.css">
+<link rel="stylesheet" href="./study.css">
+<link id="mizan" rel="stylesheet" href="./mizan-theme.css">
+<link id="refine" rel="stylesheet" href="./refine.css">
+</head>
+<body>
+<header>
+<a class="brand" href="./index.html" aria-label="Mastara"><span class="brand-ar" lang="ar">مسطرة</span><span class="brand-lat">Mastara</span></a>
+<nav class="site-nav" aria-label="Hauptnavigation"><a href="./index.html">Startseite</a><a href="./course.html">Grundkurs</a><a href="./tolerances.html">Toleranzübersicht</a></nav>
+<label class="lang-switch"><span id="languageLabel">Sprache</span> <select id="language"><option value="de">Deutsch</option><option value="en">English</option><option value="ar" lang="ar">العربية</option></select></label>
+</header>
+<main>
+<section id="catalog"></section>
+</main>
+<script type="module" src="./study.js"></script>
+<script type="module" src="./streamlit-frame.js"></script>
+</body>
+</html>
