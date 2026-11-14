@@ -129,20 +129,21 @@ const assemblyStyle = document.createElement("link");
 assemblyStyle.rel = "stylesheet";
 assemblyStyle.href = "./assembly.css";
 document.head.append(assemblyStyle);
-get("parts").before(assembly);
+document.querySelector(".layout").after(assembly);
 const renderAssembly = setupAssembly(assembly);
 const studyLinks = document.createElement("nav");
 studyLinks.id = "course";
 studyLinks.className = "page-links";
 studyLinks.style.marginBlock = "1rem";
-assembly.before(studyLinks);
+get("parts").before(studyLinks);
 const studyStyle = document.createElement("link");
 studyStyle.rel = "stylesheet";
 studyStyle.href = "./study.css";
 document.head.append(studyStyle);
 function renderStudyLinks(){
- const [course, catalog] = {de:["Grundkurs öffnen","Alle Form- und Lagetoleranzen"],en:["Open basic course","All geometric tolerances"],ar:["افتح الدورة الأساسية","جميع تفاوتات الشكل والموقع"]}[lang];
- studyLinks.innerHTML='<a href="./course.html">'+course+'</a><a href="./tolerances.html">'+catalog+'</a>';
+ const [course, catalog, drawings, simulation, lab] = {de:["Grundkurs öffnen","Toleranzübersicht","Zeichnungen","Montage-Simulation","Prüflabor"],en:["Open basic course","Tolerance guide","Drawings","Assembly simulation","Inspection lab"],ar:["افتح الدورة الأساسية","دليل التفاوتات","الرسومات","محاكاة التركيب","مختبر القياس"]}[lang];
+ studyLinks.setAttribute("aria-label", {de:"Lernbereiche",en:"Learning sections",ar:"أقسام التعلّم"}[lang]);
+ studyLinks.innerHTML='<a href="./course.html">'+course+'</a><a href="./tolerances.html">'+catalog+'</a><a href="#parts">'+drawings+'</a><a href="#assembly">'+simulation+'</a><a href="#lab">'+lab+'</a>';
 }
 render();
 renderLab(lang);
