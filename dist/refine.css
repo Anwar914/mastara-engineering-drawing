@@ -1,0 +1,85 @@
+/* Mastara: gemeinsame Gestaltung, wird als letztes Stylesheet geladen. */
+:root {
+  --ink: #1b2630;
+  --paper: #f2f4f5;
+  --surface: #fff;
+  --soft: #e8edf0;
+  --line: #d3dbe0;
+  --control-line: #8497a3;
+  --text-secondary: #4b5a66;
+  --muted: #5a6a76;
+  --action: #1f4e79;
+  --green: #1f4e79;
+  --datum: #1f5fa8;
+  --mark: #b8322a;
+  --r: 4px;
+  --font-ui: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
+  --font-draw: "IBM Plex Sans Condensed", "IBM Plex Sans Arabic", "Arial Narrow", sans-serif;
+}
+:lang(ar) { --font-ui: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, Arial, sans-serif; }
+
+html, body { background: var(--paper); }
+body, :lang(ar) body { font-family: var(--font-ui); font-size: 1rem; line-height: 1.6; color: var(--ink); }
+:lang(ar) body { line-height: 1.8; }
+:lang(ar) * { letter-spacing: 0; }
+button, select, input, textarea { font-family: inherit; }
+a { color: var(--action); }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; }
+
+/* Typografie */
+h1 { font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.15; font-weight: 600; letter-spacing: -.01em; }
+:lang(ar) h1 { line-height: 1.45; }
+h2 { font-size: 1.35rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+#intro { max-width: 64ch; font-size: 1.0625rem; margin-block: .75rem 0; }
+p, li { max-width: 72ch; }
+
+/* Kopfzeile: Marke, Navigation, Sprache */
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start;
+  gap: .25rem 1.5rem; padding-block: .5rem; background: var(--surface); border-bottom: 1px solid var(--line); color: var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 600; min-block-size: 44px; }
+.brand-ar { font-size: 1.4rem; line-height: 1; }
+.brand-lat { font-size: 1rem; padding-inline-start: .7rem; border-inline-start: 1px solid var(--control-line); }
+.site-nav { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0 auto 0 0; }
+:lang(ar) .site-nav { margin: 0 0 0 auto; }
+.site-nav a { display: inline-flex; align-items: center; min-block-size: 44px; padding-inline: .8rem;
+  color: var(--ink); text-decoration: none; border-block-end: 2px solid transparent; }
+.site-nav a:hover { background: var(--soft); }
+.site-nav a[aria-current="page"] { font-weight: 600; border-block-end-color: var(--action); }
+.lang-switch { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; font-weight: 500; }
+header select { min-block-size: 44px; padding-inline: .6rem; background: var(--surface); }
+:lang(ar) header { direction: rtl; }
+@media (max-width: 760px) { .site-nav { order: 3; flex-basis: 100%; margin: 0; } .lang-switch { margin-inline-start: auto; } }
+
+/* Abstände: 8-Punkte-Raster */
+main { padding-block: 2rem 3rem; }
+nav#parts, #features { margin-block: 1.5rem 1.25rem; }
+.layout { gap: 1.5rem; }
+#sheet, aside { padding: 1.25rem; }
+.section-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 0; }
+.section-links a { display: inline-flex; align-items: center; min-block-size: 44px; padding-inline: .9rem;
+  background: var(--surface); border: 1px solid var(--control-line); border-radius: var(--r); color: var(--ink); text-decoration: none; }
+.section-links a:hover { background: var(--soft); }
+footer { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .9rem; }
+
+/* Einheitliche Radien */
+button, select, input, textarea, #sheet, aside, #course, #catalog, #assembly, #lab, #drawing, #zone,
+.catalog-grid section, .catalog-detail, .sim-controls, .sim-results, .worked-example figure,
+.course-layout figure, .frame-guide details { border-radius: var(--r); }
+
+/* Zeichnungen: Beschriftung wie in der Norm, Markierungen ohne Leuchteffekt */
+svg text, :lang(ar) svg text { font-family: var(--font-draw); }
+.sample-frame { font: 500 1rem var(--font-draw); direction: ltr; }
+.sample-frame span + span { border-left: 0; border-inline-start: 1px solid #284456; }
+#drawing svg .selected, #drawing .datum-glow, #drawing .laser-leader { filter: none; }
+#drawing svg .selected, #drawing .laser-leader { stroke: var(--mark); }
+#drawing .datum-glow { stroke: var(--datum); }
+#drawing g[aria-pressed=true] { stroke: var(--mark); }
+svg [role=button]:focus-visible rect { stroke: var(--action); }
+#zone svg .actual { stroke: var(--mark); }
+.legend-feature { color: var(--mark); }
+.legend-datum { color: var(--datum); }
+.zone-key span::before { background: var(--datum); }
+.zone-key span + span::before { background: var(--mark); }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
