@@ -1,3 +1,4 @@
+import { renderDrawingLesson } from "./drawing-lesson.js";
 import { setupFitCalculator } from "./fit-calculator.js";
 import {applyChrome} from "./site.js";
 import { frameGuide } from "./frame-guide.js";
@@ -117,6 +118,7 @@ get("language").addEventListener("change",(event)=>{
  renderLab(lang);
  renderAssembly(lang);
  renderFitCalculator(lang);
+ renderDrawing(lang);
  renderStudyLinks();
 });
 const lab = document.createElement("section");
@@ -139,6 +141,10 @@ const fitCalculator = document.createElement("section");
 fitCalculator.id = "fit-calculator";
 assembly.before(fitCalculator);
 const renderFitCalculator = setupFitCalculator(fitCalculator);
+const drawingLesson = document.createElement("section");
+drawingLesson.id = "drawing-lesson";
+fitCalculator.after(drawingLesson);
+const renderDrawing = (language) => renderDrawingLesson(drawingLesson, language);
 const studyLinks = document.createElement("nav");
 studyLinks.id = "sections";
 studyLinks.className = "section-links";
@@ -149,12 +155,13 @@ studyStyle.rel = "stylesheet";
 studyStyle.href = "./study.css";
 document.getElementById("mizan").before(studyStyle);
 function renderStudyLinks(){
- const names = {de:["Zeichnungen","Passungsrechner","Montage-Simulation","Prüflabor"],en:["Drawings","Fit calculator","Assembly simulation","Inspection lab"],ar:["الرسومات","حاسبة التوافقات","محاكاة التركيب","مختبر القياس"]}[lang];
+ const names = {de:["Zeichnungen","Zeichnung lesen","Passungsrechner","Montage-Simulation","Prüflabor"],en:["Drawings","Read the drawing","Fit calculator","Assembly simulation","Inspection lab"],ar:["الرسومات","قراءة الرسم","حاسبة التوافقات","محاكاة التركيب","مختبر القياس"]}[lang];
  studyLinks.setAttribute("aria-label", {de:"Auf dieser Seite",en:"On this page",ar:"في هذه الصفحة"}[lang]);
- studyLinks.innerHTML = ["#parts","#fit-calculator","#assembly","#lab"].map((h,i)=>'<a href="'+h+'">'+names[i]+'</a>').join("");
+ studyLinks.innerHTML = ["#parts","#drawing-lesson","#fit-calculator","#assembly","#lab"].map((h,i)=>'<a href="'+h+'">'+names[i]+'</a>').join("");
 }
 render();
 renderLab(lang);
 renderAssembly(lang);
 renderFitCalculator(lang);
+ renderDrawing(lang);
 renderStudyLinks();
