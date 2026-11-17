@@ -29,17 +29,7 @@ export function applyChrome(lang) {
       if (i === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
   }
-  if (nav) {
-    let workshop = nav.querySelector('[data-workshop]');
-    if (!workshop) {
-      workshop = document.createElement("a");
-      workshop.href = "./workshop-ar.html";
-      workshop.dataset.workshop = "";
-      workshop.hreflang = "ar";
-      nav.append(workshop);
-    }
-    workshop.textContent = {de:"Werkstatt-Lektionen (AR)",en:"Workshop lessons (AR)",ar:"دروس الورشة"}[lang];
-  }
+  nav?.querySelector('[data-workshop]')?.remove();
   const label = document.getElementById("languageLabel");
   if (label) label.textContent = LANG_LABEL[lang];
   const select = document.getElementById("language");
