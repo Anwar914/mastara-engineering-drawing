@@ -157,8 +157,31 @@ document.getElementById("mizan").before(studyStyle);
 function renderStudyLinks(){
  const names = {de:["Zeichnungen","Zeichnung lesen","Passungsrechner","Montage-Simulation","Prüflabor"],en:["Drawings","Read the drawing","Fit calculator","Assembly simulation","Inspection lab"],ar:["الرسومات","قراءة الرسم","حاسبة التوافقات","محاكاة التركيب","مختبر القياس"]}[lang];
  studyLinks.setAttribute("aria-label", {de:"Auf dieser Seite",en:"On this page",ar:"في هذه الصفحة"}[lang]);
- studyLinks.innerHTML = ["#parts","#drawing-lesson","#fit-calculator","#assembly","#lab"].map((h,i)=>'<a href="'+h+'">'+names[i]+'</a>').join("");
+ studyLinks.innerHTML = ["#parts","#drawing-lesson","#fit-calculator","#assembly","#lab"].map((h,i)=>'<a href="'+h+'" data-view="'+h.slice(1)+'">'+names[i]+'</a>').join("");
+ showView();
 }
+function showView(){
+ const views=["parts","drawing-lesson","fit-calculator","assembly","lab"];
+ const requested=location.hash.slice(1)||"parts";
+ const active=views.includes(requested)?requested:"parts";
+ get("parts").hidden=active!=="parts";
+ document.querySelector(".layout").hidden=active!=="parts";
+ for(const view of views.slice(1))document.getElementById(view).hidden=active!==view;
+ get("title").hidden=active!=="parts";
+ get("intro").hidden=active!=="parts";
+ studyLinks.querySelectorAll("[data-view]").forEach(link=>{
+  if(link.dataset.view===active)link.setAttribute("aria-current","page");
+  else link.removeAttribute("aria-current");
+ });
+}
+studyLinks.onclick=event=>{
+ const link=event.target.closest("[data-view]");
+ if(!link)return;
+ event.preventDefault();
+ history.pushState(null,"",link.getAttribute("href"));
+ showView();
+};
+window.addEventListener("hashchange",showView);
 render();
 renderLab(lang);
 renderAssembly(lang);
