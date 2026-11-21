@@ -1,4 +1,6 @@
-import { mountPartModel } from "./gdt-model.js";
+import { renderIso } from "./iso-live.js";
+// Prüfaufbau je Symbol: Figur, Merkmal und welche Bezugsflächen der Aufbau hervorhebt
+const isoFor = [["fig-4",0],["fig-0",0],["fig-1",0],["fig-3",0],["fig-6",0],["tol-5",0],["fig-2",0],["fig-2",1,"B"],["tol-8",0],["fig-0",1],["tol-10",0],["tol-11",0],["fig-1",1],["fig-3",1]];
 import { renderCatalogExample } from "./catalog-examples.js";
 const rows = [
   [
@@ -137,7 +139,8 @@ export function setupCatalog(root) {
   lang=nextLang;
   const n={de:1,en:2,ar:3}[lang], t=ui[lang], row=rows[active];
   root.innerHTML='<h2>'+t[0]+'</h2><p>'+t[5]+'</p><div class="catalog-grid">'+groups.map(([from,to],group)=>'<section><h3>'+t[group+1]+'</h3>'+rows.slice(from,to).map((r,i)=>'<button data-symbol="'+(from+i)+'" aria-pressed="'+(from+i===active)+'"><bdi>'+r[0]+'</bdi> '+r[n]+'</button>').join("")+'</section>').join("")+'</div><article class="catalog-detail" aria-live="polite"><h3><bdi>'+row[0]+'</bdi> '+row[n]+'</h3><p>'+row[n+3]+'</p>'+renderCatalogExample(active,row[0],lang)+(active===9?'<a href="./index.html#assembly">'+t[6]+'</a>':'')+'</article><div data-part-model></div><a target="_blank" rel="noopener" href="https://www.iso.org/standard/66777.html">ISO 1101</a>, <a target="_blank" rel="noopener" href="https://www.iso.org/standard/65559.html">ISO 5458</a>';
-  mountPartModel(root.querySelector("[data-part-model]"),active,lang);
+  const [src,feature,datumShow]=isoFor[active], datum=["","","","","","","A","A","A","A B C","A","A","A","A"][active];
+  renderIso(root.querySelector("[data-part-model]"),{src,feature,datum,datumShow,lang});
  }
  root.addEventListener("click",event=>{
   const button=event.target.closest("[data-symbol]");

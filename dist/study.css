@@ -1,2 +1,22 @@
 .page-links{display:flex;gap:1rem;flex-wrap:wrap;margin:0 0 1rem}.page-links a{display:inline-block;padding:.5rem .75rem;border:1px solid #9db2bb;border-radius:6px;background:white}#catalog{background:white;border:1px solid #c4d2d9;border-radius:10px;padding:1.2rem}.catalog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.8rem}.catalog-grid section{padding:.65rem;background:#edf4f6;border-radius:6px}.catalog-grid h3{margin:.2rem 0 .65rem}.catalog-grid button{display:block;width:100%;text-align:start;margin:.35rem 0}.catalog-detail{margin:1rem 0;padding:1rem;border-inline-start:4px solid #00636a;background:#edf4f6}.catalog-detail h3{margin:0}.course-notes{border-inline-start:3px solid #007f86;padding-inline-start:.75rem}.sheet-legend{font-size:.9rem;padding-inline-start:1.5rem}
 .worked-example{display:grid;grid-template-columns:1.35fr 1fr;gap:1rem;margin-block:.8rem;align-items:start}.worked-example h4{margin:0}.worked-example figure{margin:0;background:white;padding:.5rem;border:1px solid #c4d2d9;border-radius:6px}.worked-example figcaption{font-size:.8rem;color:#415968;text-align:center}.sample-frame{display:inline-flex;border:1px solid #284456;background:white;font:600 1rem ui-monospace,monospace}.sample-frame span{padding:.3rem .5rem}.sample-frame span+span{border-left:1px solid #284456}.example-values{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.6rem}.example-values span{padding:.25rem .5rem;border-radius:4px;font-weight:600}.example-pass{background:#d7eee7;color:#005449}.example-fail{background:#f8e0df;color:#872b2c}@media(max-width:620px){.worked-example{grid-template-columns:1fr}}
+.tech-sheet{margin:1rem 0 0;background:#fff;border:1px solid #c4d2d9;border-radius:6px;padding:.5rem}
+.tech-sheet figcaption{font-size:.8rem;color:#415968;text-align:center}
+.tech-sheet .k-feat{color:#b8322a}.tech-sheet .k-dat{color:#1f5fa8}
+.tech-drawing{display:block;width:100%;height:auto;font-family:var(--font-draw,"IBM Plex Sans Condensed",sans-serif)}
+.tech-drawing g path,.tech-drawing g circle,.tech-drawing g rect{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.td-vis path,.td-vis circle{stroke:#1b2630;stroke-width:1.5}
+.td-thin path,.td-thin circle{stroke:#1b2630;stroke-width:.6}
+.td-ctr path,.td-ctr circle,.tech-drawing .td-ctr{stroke:#1b2630;stroke-width:.55;stroke-dasharray:12 2.5 1.5 2.5}
+.td-hid path,.td-hid circle{stroke:#1b2630;stroke-width:.7;stroke-dasharray:4 2}
+.td-hatch path{stroke:none;fill:inherit!important}.td-hatch-line{stroke:#1b2630;stroke-width:.45}
+.tech-drawing .td-arrow{fill:#1b2630;stroke:none}
+.td-txt text,.td-over text,.td-title text{fill:#1b2630;stroke:none}
+.td-ted-box{fill:none;stroke:#1b2630;stroke-width:.6}
+.td-feat path,.td-feat circle{stroke:#b8322a;stroke-width:4;stroke-opacity:.55}
+.td-dat path{stroke:#1f5fa8;stroke-width:4;stroke-opacity:.5}.td-dat.is-off{display:none}
+.td-frame rect{fill:#fff;stroke:#1b2630;stroke-width:.8}.td-frame.is-active rect{fill:#fff4ee}
+.td-leader{fill:none;stroke:#1b2630;stroke-width:.7}.tech-drawing .td-leader-arrow{fill:#1b2630}
+.td-datum path,.td-datum rect{stroke:#1b2630;stroke-width:.7;fill:#fff}.tech-drawing .td-datum .td-datum-tri{fill:#1b2630}
+.td-border{fill:none;stroke:#1b2630;stroke-width:.9}
+.td-title rect,.td-title path,.td-title circle{fill:none;stroke:#1b2630;stroke-width:.6}

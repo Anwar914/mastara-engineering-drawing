@@ -7,6 +7,7 @@ import {examples} from "./data.js";
 import {additionalDrawings} from "./more-drawings.js";
 import {setupLab} from "./lab.js";
 import {setupAssembly} from "./assembly.js";
+import {renderIso} from "./iso-live.js";
 
 const strings = {
  de: ["Form- und Lagetoleranzen","Wähle ein Bauteil und einen Toleranzrahmen. Die Zeichnung markiert das tolerierte Element, die Skizze zeigt die Toleranzzone.","Sprache","Bauteilauswahl","Form","Richtung","Ort","Lauf","Toleranzzone (überhöht)","Lehrzeichnung, Maße in mm"],
@@ -94,6 +95,7 @@ function render() {
  }).join("");
  get("drawing").innerHTML = '<svg viewBox="0 0 480 315" role="group" aria-label="'+example.part[lang]+'"><defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v8" stroke="#76929d"/></pattern></defs><style>.axis{stroke:#667f8d;stroke-dasharray:9 4 2 4}</style><g fill="none" stroke="#183649" stroke-width="1.5">'+'<g class="drawing-context">'+geometry.body+'<g stroke="#657d8a" font-size="12">'+geometry.dims+'</g></g>'+drawDatums(part,datum)+'<g class="selected">'+geometry.marks[feature]+'</g>'+frames+'</g><text x="238" y="302" text-anchor="middle" font-size="10" direction="'+document.documentElement.dir+'">'+t[9]+'</text></svg>'+drawingLegend(lang,datum);
  get("zone").innerHTML = '<svg viewBox="0 0 290 153" role="img" aria-label="'+t[8]+'"><style>.actual{stroke:#007f86;stroke-width:3}</style><g fill="none" stroke="#506f80" stroke-width="1.5">'+zoneShapes[part][feature]+'</g><text x="145" y="133" text-anchor="middle" font-size="12">'+value+' mm'+(datum?', '+datum:'')+'</text><text x="145" y="148" text-anchor="middle" font-size="9" direction="'+document.documentElement.dir+'">'+t[8]+'</text></svg>';
+ renderIso(get("sheet"), {part, feature, datum, lang});
 }
 document.addEventListener("click",(event)=>{
  activeCell = event.target.dataset.cell === undefined ? null : Number(event.target.dataset.cell);

@@ -1,3 +1,4 @@
+import { renderTechDrawing } from "./tech-drawings.js";
 const zoneKeys={
  ar:["حدود منطقة التفاوت","العنصر أو الأثر المُمثَّل"],
  de:["Grenzen der Toleranzzone","Dargestelltes Element oder Messprofil"],
@@ -184,5 +185,5 @@ export function renderCatalogExample(index,symbol,lang){
  const [value,datums,pass,fail,...contexts]=examples[index],t=labels[lang];
  const number=new Intl.NumberFormat(lang,{minimumFractionDigits:3,maximumFractionDigits:3});
  const cell=(text)=>'<span>'+text+'</span>';
- return '<div class="worked-example"><div><h4>'+t[0]+'</h4><p>'+contexts[{de:0,en:1,ar:2}[lang]]+'</p><div class="sample-frame" dir="ltr" aria-label="'+t[1]+'">'+[symbol,value,...datums.split("|").filter(Boolean)].map(cell).join("")+'</div><div class="example-values"><span class="example-pass">'+t[2]+' <bdi>'+number.format(Number(pass))+' mm</bdi></span><span class="example-fail">'+t[3]+' <bdi>'+number.format(Number(fail))+' mm</bdi></span></div></div><figure>'+zone(index,t[4])+'<figcaption>'+t[4]+zoneLegend(lang)+'</figcaption></figure></div>'+partDrawing(index,symbol,value,datums,lang);
+ return '<div class="worked-example"><div><h4>'+t[0]+'</h4><p>'+contexts[{de:0,en:1,ar:2}[lang]]+'</p><div class="sample-frame" dir="ltr" aria-label="'+t[1]+'">'+[symbol,value,...datums.split("|").filter(Boolean)].map(cell).join("")+'</div><div class="example-values"><span class="example-pass">'+t[2]+' <bdi>'+number.format(Number(pass))+' mm</bdi></span><span class="example-fail">'+t[3]+' <bdi>'+number.format(Number(fail))+' mm</bdi></span></div></div><figure>'+zone(index,t[4])+'<figcaption>'+t[4]+zoneLegend(lang)+'</figcaption></figure></div>'+renderTechDrawing(index,lang);
 }
